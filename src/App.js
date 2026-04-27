@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import './App.css';
-// import About from './components/About';
+import About from './components/About';
 import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
 import Alert from './components/Alert';
-// import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
   const [mode, setMode] = useState("light")
@@ -43,14 +43,15 @@ function App() {
   
   return (
     <>
-    {/* <BrowserRouter> */}
-    <Navbar title = "TextUtils" aboutText="About" mode={mode} toggleMode={toggleMode}/>
+    <HashRouter>
+    <Navbar mode={mode} toggleMode={toggleMode}/>
     <Alert alert={alert}/>
-    {/* <Routes> */}
-      <TextForm heading="Enter the text to analyze below" mode={mode} showAlert = {showAlert}/>
-      {/* <Route path='/about' element={<About/>}/>       */}
-    {/* </Routes> */}
-    {/* </BrowserRouter> */}
+    <Routes>
+      <Route path = '/' element ={<TextForm heading="Enter the text to analyze below" mode={mode} showAlert = {showAlert}/>}/>
+      <Route path = '/textutils' element ={<TextForm heading="TextUtils - Word Counter | Character Counter | Text manipulation" mode={mode} showAlert = {showAlert}/>}/>
+      <Route path='/about' element={<About mode ={mode}/>}/>      
+    </Routes>
+    </HashRouter>
     </>
   );
 }

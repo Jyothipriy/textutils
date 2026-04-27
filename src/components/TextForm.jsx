@@ -49,7 +49,7 @@ const wordCount = text.trim().split(/\s/).filter(Boolean).length
     <>
     <div className="container mb-3 my-3">
         <div className="container mb-3 my-3" style ={{color: props.mode === 'dark'? 'white':'black'}}>
-            <h2>{props.heading}</h2>
+            <h2 className='mb-2'>{props.heading}</h2>
 
             <style>
                 {`#myBox::placeholder 
@@ -63,19 +63,19 @@ const wordCount = text.trim().split(/\s/).filter(Boolean).length
             value={text}
             placeholder='Enter text here' style ={{background: props.mode === 'dark'? '#030d4d': 'white', color: props.mode === 'dark'? 'white':'black'}}></textarea>
         </div>
-        <button className="btn btn-primary mx-2" onClick={handleUpClick}>Convert to Uppercase</button>
-        <button className="btn btn-primary mx-2" onClick={handleLoClick}>Convert to Uppercase</button>
-        <button className="btn btn-primary mx-2" onClick={handleremspacClick}>Remove space</button>
-        <button className="btn btn-primary mx-2" onClick={handleremxtraspacClick}>Remove extra space</button>
-        <button className="btn btn-primary mx-2" onClick={handleclearClick}>Clear Text</button>
-        <button className="btn btn-primary mx-2" onClick={handleCopy}>Copy Text</button>
+        <button disabled= {text.length === 0} className="btn btn-primary mx-2" onClick={handleUpClick}>Convert to Uppercase</button>
+        <button disabled= {text.length === 0} className="btn btn-primary mx-2" onClick={handleLoClick}>Convert to Uppercase</button>
+        <button disabled= {text.length === 0}className="btn btn-primary mx-2" onClick={handleremspacClick}>Remove space</button>
+        <button disabled= {text.length === 0} className="btn btn-primary mx-2" onClick={handleremxtraspacClick}>Remove extra space</button>
+        <button disabled= {text.length === 0} className="btn btn-primary mx-2" onClick={handleclearClick}>Clear Text</button>
+        <button disabled= {text.length === 0} className="btn btn-primary mx-2" onClick={handleCopy}>Copy Text</button>
     </div>
     <div className='container my-3' style ={{color: props.mode === 'dark'? 'white':'black'}}>
         <h3>Text Summary</h3>
         <p>{wordCount < 2? `${wordCount} word` : `${wordCount} words`} and {text.length} characters</p>
         <p>{(0.008 * wordCount).toFixed(2)} minutes read</p>
         <h4>Preview</h4>
-        <p>{text.length>0? text:'Enter data above the text box to display data here'}</p>
+        <p>{text.length>0? text:'Nothing to preview'}</p>
     </div>
     </>
   )
